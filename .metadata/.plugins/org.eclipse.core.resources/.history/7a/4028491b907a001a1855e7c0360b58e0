@@ -1,0 +1,53 @@
+package io.javabrains.springbootstarter.course;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class courseService {
+    
+	@Autowired
+    private courseRepository courseRepository;
+	
+	
+
+	public List<Course> getAllcourses() {
+		
+		List<Course> courses=new ArrayList<>();
+		courseRepository.findAll().forEach(courses::add);
+		return courses;
+		
+	}
+
+	public Optional<Course> getTopic(String id) {
+		
+		return courseRepository.findById(id);
+	}
+
+	public void addTopic(Course topic) {
+		
+		
+		courseRepository.save(topic);
+		
+		
+	}
+
+	public void updateTopic(Course topic, String id) {
+		
+		courseRepository.save(topic);
+		
+	}
+
+	public void deleteTopic(String id) {
+		
+		courseRepository.deleteById(id);
+		
+	}
+	
+	
+
+}
